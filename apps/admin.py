@@ -64,5 +64,17 @@ class PlanFeatureAdmin(admin.ModelAdmin):
 
 
 
+@admin.register(PricingPlanFeature)
+class PricingPlanFeatureAdmin(admin.ModelAdmin):
+    list_display=['app_id','feature_id','created_by','updated_by']
+    readonly_fields = ['created_by','updated_by']
 
-    
+    def save_model(self, request, obj, form, change):
+        if not obj.pk:
+
+            obj.created_by = request.user
+        else:
+            # Existing object is being changed, update the updated_by field
+            obj.updated_by = request.user
+            print(request.user)
+        super().save_model(request, obj, form, change)

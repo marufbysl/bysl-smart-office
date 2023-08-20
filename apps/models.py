@@ -42,3 +42,13 @@ class PlanFeature(BaseModel):
 
     def __str__(self):
         return self.name
+
+
+class PricingPlanFeature(BaseModel):
+    app_id=models.ForeignKey("apps.App",verbose_name=("APP NAME"),on_delete=models.CASCADE)
+    feature_id=models.ForeignKey("apps.AppFeature",verbose_name=("APP FEATURE NAME"),on_delete=models.CASCADE)
+    pricing_id=models.ForeignKey("apps.Pricing",verbose_name=("PRICING"),on_delete=models.CASCADE)
+    is_active=models.BooleanField(default=True)
+
+    def __str__(self):
+        return str(self.pk)
