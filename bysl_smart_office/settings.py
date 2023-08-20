@@ -80,7 +80,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'bysl_smart_office.wsgi.application'
 
+# restframework
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+}
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
